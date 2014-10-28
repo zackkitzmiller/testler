@@ -1,4 +1,4 @@
 testler
 =======
 
-golang test helpers
+kessler inspired golang test helpers

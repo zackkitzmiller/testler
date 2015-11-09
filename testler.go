@@ -6,14 +6,22 @@ import (
 )
 
 /* Test Helpers */
-func Expect(t *testing.T, a interface{}, b interface{}) {
+func Expect(t *testing.T, a interface{}, b interface{}, messages ...string) {
 	if a != b {
-		t.Errorf("Expected %v (type %v) - Got %v (type %v)", b, reflect.TypeOf(b), a, reflect.TypeOf(a))
+		var message string = ""
+		if len(messages) > 0 {
+			message = messages[0] + "\n"
+		}
+		t.Errorf("%sExpected %v (type %v) - Got %v (type %v)", message, b, reflect.TypeOf(b), a, reflect.TypeOf(a))
 	}
 }
 
-func Refute(t *testing.T, a interface{}, b interface{}) {
+func Refute(t *testing.T, a interface{}, b interface{}, messages ...string) {
 	if a == b {
-		t.Errorf("Did not expect %v (type %v) - Got %v (type %v)", b, reflect.TypeOf(b), a, reflect.TypeOf(a))
+		var message string = ""
+		if len(messages) > 0 {
+			message = messages[0] + "\n"
+		}
+		t.Errorf("%sDid not expect %v (type %v) - Got %v (type %v)", message, b, reflect.TypeOf(b), a, reflect.TypeOf(a))
 	}
 }
